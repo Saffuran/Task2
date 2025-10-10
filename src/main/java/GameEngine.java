@@ -22,7 +22,7 @@ public class GameEngine {
     }
 
     public GuessResult makeGuess(int guess) {
-        // Check if user wants to quit (negative number)
+        // Quit (feature1) - doesn't count as an attempt
         if (guess < 0) {
             userQuit = true;
             return new GuessResult(false, "Exiting game...", attempts);
@@ -33,25 +33,31 @@ public class GameEngine {
         if (guess == target) {
             gameWon = true;
             return new GuessResult(true, "Correct! You guessed it in " + attempts + " attempts.", attempts);
-        } else if (guess < target) {
-            return new GuessResult(false, "Too low! Try a higher number.", attempts);
-        } else {
-            String hint = getHint(guess);
-            GuessResult result;
-            if (guess < target) {
-                result = new GuessResult(false, "Too low! Try a higher number.", attempts);
-            } else {
-                result = new GuessResult(false, "Too high! Try a lower number.", attempts);
-            }
-            result.setHint(getHint(guess));
-            return result;
         }
+
+        // Attempt limit (feature2)
+        if (attempts >= MAX_ATTEMPTS) {
+            gameOver = true;
+            return new GuessResult(false, "Game Over! You've used all " + MAX_ATTEMPTS
+                    + " attempts. The number was " + target + ".", attempts);
+        }
+
+        GuessResult result;
+        if (guess < target) {
+            result = new GuessResult(false, "Too low! Try a higher number.", attempts);
+        } else {
+            result = new GuessResult(false, "Too high! Try a lower number.", attempts);
+        }
+        result.setRemainingAttempts(MAX_ATTEMPTS - attempts);  // feature2
+        result.setHint(getHint(guess));                        // feature3
+        return result;
     }
 
     public void reset() {
         target = Utils.randomInt(min, max);
         attempts = 0;
         gameWon = false;
+        gameOver = false;
         userQuit = false;
     }
 
