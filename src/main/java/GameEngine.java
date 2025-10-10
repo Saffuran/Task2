@@ -1,9 +1,12 @@
 public class GameEngine {
+    private static final int MAX_ATTEMPTS = 10;
+
     private final int min;
     private final int max;
     private int target;
     private int attempts;
     private boolean gameWon;
+    private boolean gameOver;
     private boolean userQuit;
     private boolean hintsEnabled;
 
@@ -12,6 +15,7 @@ public class GameEngine {
         this.max = max;
         this.attempts = 0;
         this.gameWon = false;
+        this.gameOver = false;
         this.userQuit = false;
         this.hintsEnabled = true;
         reset();
@@ -55,12 +59,20 @@ public class GameEngine {
         return gameWon;
     }
 
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
     public boolean hasUserQuit() {
         return userQuit;
     }
 
     public int getAttempts() {
         return attempts;
+    }
+
+    public int getMaxAttempts() {
+        return MAX_ATTEMPTS;
     }
 
     public int getMin() {
