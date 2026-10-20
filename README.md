@@ -19,12 +19,16 @@ A console-based number guessing game written in Java and built with Gradle.
 
 ## Branch structure (at the start of the project)
 
-| Branch | Purpose                         | Changes                                        |
-|---|---------------------------------|------------------------------------------------|
-| `main` | Stable production branch        | ???                                            |
-| `dev` | Integration branch for features | Quit with a negative number, play again with 0 |
-| `feature1` | Quit/Replay feature             | ???                                            |
-| `feature2` | Attempt Limit                   | ???                                            |
-| `feature3` | Hint System                     | ???                                            |
-| `hotfix` | ???                             | ???                                            |
-| `documentation` | Project documentation           | This README                                    |
+| Branch          | Purpose                         | Changes                                                                                          |
+|-----------------|---------------------------------|--------------------------------------------------------------------------------------------------|
+| `main`          | Stable production branch        | ---                                                                                              |
+| `dev`           | Integration branch for features |                                                                                                  |
+| `feature1`      | Quit/Replay feature             | Quit with a negative number, play again with 0                                                   |
+| `feature2`      | Attempt Limit                   | Max_Attempts = 10, game-over state when attempts run out, shows remaining                        |
+| `feature3`      | Hint System                     | after 3 attempts within 10 "You're very close!" and within 20 with 5+ attempts "Getting warmer!" |
+| `hotfix`        | Production bug fix | ???                                                                                              |???                                                                                             |
+| `documentation` | Project documentation           | This README                                                                                      |
+
+##Notes
+Accidentally commited this README to 'dev' instead of 'documentation' branch. 
+Fixed it by cherry-picking the commit onto 'documentation' and resetting 'dev' back to the commit before it using reset --hard
