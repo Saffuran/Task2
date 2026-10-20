@@ -32,3 +32,13 @@ A console-based number guessing game written in Java and built with Gradle.
 ##Notes
 Accidentally commited this README to 'dev' instead of 'documentation' branch. 
 Fixed it by cherry-picking the commit onto 'documentation' and resetting 'dev' back to the commit before it using reset --hard
+
+##Learning Summary
+
+Merge combines two branches as they are. If they diverge then it creates a merge commit like with feature1
+to see where the code cam from. 
+Rebase takes your branch's commits and replays them on by one on another branch and they get ne hashes. 45aa640 is now f4e7de4 and the history stays
+without a merge commit. It's cleaner but you lose that history where the code came from.
+Cherry-picking copies a commit and applies it to another branch. It creates a new commit with a new hash. It's useful for bug fixes and documentation updates.
+The reason we moved it over was so that dev has the fix as well.
+The trickiest part was rebasing and seeing what pieces I needed to combine, keep and straight up remove. Sure, the green parts were easy but it got really tricky in the middle with the guessing logic.
